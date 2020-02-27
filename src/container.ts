@@ -7,20 +7,18 @@ import Vue, { VueConstructor } from 'vue'
 import { StateManager } from './application/state-manager'
 import { BaseStateManager } from './application/base-state-manager'
 import { VueStateManager } from './infraestructure/vue-state-manager'
-import { UseCaseDecorator } from './application/use-case-decorator'
 import { CreateTodoCmd } from './application/commands/create-todo-cmd'
 import { GetTodosQry } from './application/queries/get-todos-qry'
 import { CompleteTodoCmd } from './application/commands/complete-todo-cmd'
+import { Runner } from './domain/runner/runner'
+import { ExecutorLink } from './domain/runner/executor-link'
+import { LoggerLink } from './domain/runner/logger-link'
 
 export class Container {
   private static _instance: Container | null = null
   private readonly _container: interfaces.Container
 
   private constructor() {
-    container
-      .bind<UseCaseDecorator>(TYPES.USE_CASE_DECORATOR)
-      .to(UseCaseDecorator)
-      .inSingletonScope()
     container.bind<Logger>(TYPES.LOGGER).toConstantValue(window.console)
     container
       .bind<StateManager>(TYPES.STATE_MANAGER)
@@ -46,6 +44,18 @@ export class Container {
     container
       .bind<CompleteTodoCmd>(TYPES.COMPLETE_TODO_CMD)
       .to(CompleteTodoCmd)
+      .inSingletonScope()
+    container
+      .bind<Runner>(TYPES.RUNNER)
+      .to(Runner)
+      .inSingletonScope()
+    container
+      .bind<ExecutorLink>(TYPES.EXECUTOR_LINK)
+      .to(ExecutorLink)
+      .inSingletonScope()
+    container
+      .bind<LoggerLink>(TYPES.LOGGER_LINK)
+      .to(LoggerLink)
       .inSingletonScope()
 
     this._container = container

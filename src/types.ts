@@ -10,5 +10,8 @@ export const TYPES = {
   ROUTER: Symbol.for('ROUTER'),
   CREATE_TODO_CMD: Symbol.for('CREATE_TODO_CMD'),
   GET_TODOS_QRY: Symbol.for('GET_TODOS_QRY'),
-  COMPLETE_TODO_CMD: Symbol.for('COMPLETE_TODO_CMD')
+  COMPLETE_TODO_CMD: Symbol.for('COMPLETE_TODO_CMD'),
+  RUNNER: Symbol.for('RUNNER'),
+  LOGGER_LINK: Symbol.for('LOGGER_LINK'),
+  EXECUTOR_LINK: Symbol.for('EXECUTOR_LINK')
 }

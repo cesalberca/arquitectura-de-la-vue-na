@@ -11,7 +11,7 @@ export class CompleteTodoCmd extends Command<Id> {
     super()
   }
 
-  execute(id: Id): void {
+  internalExecute(id: Id): void {
     const foundTodo = this.stateManager.state.todos.find(todo => todo.id === id)
     if (foundTodo !== undefined) {
       foundTodo.completed = !foundTodo.completed

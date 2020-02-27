@@ -11,7 +11,7 @@ export class GetTodosQry extends Query<Todo[]> {
     super()
   }
 
-  execute(): Todo[] {
+  internalExecute(): Todo[] {
     return this.stateManager.state.todos
   }
 }

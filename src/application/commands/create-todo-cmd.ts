@@ -11,12 +11,13 @@ export class CreateTodoCmd extends Command<string> {
     super()
   }
 
-  execute(text: string): void {
+  internalExecute(text: string): void {
     const currentId =
       this.stateManager.state.todos
         .map(todo => todo.id)
         .slice()
-        .sort()[0] ?? 0
+        .sort()
+        .reverse()[0] ?? 0
 
     const newTodo: Todo = {
       id: currentId + 1,
