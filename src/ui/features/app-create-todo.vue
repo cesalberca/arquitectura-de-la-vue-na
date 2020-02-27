@@ -1,7 +1,9 @@
 <template>
   <div>
-    <app-input v-model="todoText">Todo</app-input>
-    <app-button @clicked="createTodo">Crear</app-button>
+    <form @submit="event => event.preventDefault()">
+      <app-input v-model="todoText">Todo</app-input>
+      <app-button @clicked="createTodo">Crear</app-button>
+    </form>
   </div>
 </template>
 
