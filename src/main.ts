@@ -1,8 +1,9 @@
-import Vue from "vue";
-import App from "./App.vue";
+import 'reflect-metadata'
+import { Application } from './ui/application'
+import { Container } from './container'
+import { TYPES } from './types'
+import App from './ui/App.vue'
 
-Vue.config.productionTip = false;
-
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
+Container.instance()
+  .get<Application>(TYPES.APPLICATION)
+  .create(App)
