@@ -5,14 +5,14 @@ import { Logger } from './domain/use-cases/logger'
 import { Application } from './ui/application'
 import Vue, { VueConstructor } from 'vue'
 import { StateManager } from './application/state-manager'
-import { VueStateManager } from './infraestructure/vue-state-manager'
+import { VueStateManager } from './infrastructure/vue-state-manager'
 import { CreateTodoCmd } from './application/commands/create-todo-cmd'
 import { GetTodosQry } from './application/queries/get-todos-qry'
 import { CompleteTodoCmd } from './application/commands/complete-todo-cmd'
 import { Runner } from './domain/runner/runner'
 import { ExecutorLink } from './domain/runner/executor-link'
 import { LoggerLink } from './domain/runner/logger-link'
-import { ConsoleLogger } from './infraestructure/console-logger'
+import { ConsoleLogger } from './infrastructure/console-logger'
 
 export class Container {
   private static _instance: Container | null = null
