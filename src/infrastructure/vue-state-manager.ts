@@ -19,10 +19,13 @@ export class VueStateManager implements StateManager {
   }
 
   patch(state: Partial<State>): void {
-    this.state = {
-      ...this.state,
-      ...state
-    }
+    type Keys = keyof State
+    Object.entries(state).forEach(([key, value]) => {
+      const accessor = key as Keys
+      if (value !== undefined) {
+        this.state[accessor] = value
+      }
+    })
   }
 
   notifyAll() {
