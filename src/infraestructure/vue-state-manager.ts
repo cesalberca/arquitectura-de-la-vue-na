@@ -1,17 +1,12 @@
 import Vue from 'vue'
 import { Injectable } from '../domain/di/injectable'
-import { BaseStateManager } from '../application/base-state-manager'
 import { State } from '../application/state'
 import { Observer } from '../domain/observer/observer'
+import { StateManager } from '../application/state-manager'
 
 @Injectable()
-export class VueStateManager extends BaseStateManager implements Observer {
-  private _state: State
-
-  constructor() {
-    super()
-    this._state = Vue.observable(new State())
-  }
+export class VueStateManager implements StateManager {
+  private _state: State = Vue.observable(new State())
 
   get state(): State {
     return this._state
@@ -22,8 +17,13 @@ export class VueStateManager extends BaseStateManager implements Observer {
     this.notifyAll()
   }
 
-  notify() {
-    // TODO: Fix this
-    this._state.loading = true
+  private readonly observers: Observer[] = []
+
+  notifyAll() {
+    this.observers.forEach(observer => observer.notify())
+  }
+
+  register(observer: Observer) {
+    this.observers.push(observer)
   }
 }

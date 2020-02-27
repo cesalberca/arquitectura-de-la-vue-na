@@ -5,7 +5,6 @@ import { Logger } from './domain/use-cases/logger'
 import { Application } from './ui/application'
 import Vue, { VueConstructor } from 'vue'
 import { StateManager } from './application/state-manager'
-import { BaseStateManager } from './application/base-state-manager'
 import { VueStateManager } from './infraestructure/vue-state-manager'
 import { CreateTodoCmd } from './application/commands/create-todo-cmd'
 import { GetTodosQry } from './application/queries/get-todos-qry'
@@ -23,10 +22,6 @@ export class Container {
     container
       .bind<StateManager>(TYPES.STATE_MANAGER)
       .to(VueStateManager)
-      .inSingletonScope()
-    container
-      .bind<BaseStateManager>(TYPES.BASE_STATE_MANAGER)
-      .to(BaseStateManager)
       .inSingletonScope()
     container
       .bind<Application>(TYPES.APPLICATION)
