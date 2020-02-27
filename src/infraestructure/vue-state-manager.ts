@@ -7,6 +7,7 @@ import { StateManager } from '../application/state-manager'
 @Injectable()
 export class VueStateManager implements StateManager {
   private _state: State = Vue.observable(new State())
+  private readonly observers: Observer[] = []
 
   get state(): State {
     return this._state
@@ -17,7 +18,12 @@ export class VueStateManager implements StateManager {
     this.notifyAll()
   }
 
-  private readonly observers: Observer[] = []
+  patch(state: Partial<State>): void {
+    this.state = {
+      ...this.state,
+      ...state
+    }
+  }
 
   notifyAll() {
     this.observers.forEach(observer => observer.notify())

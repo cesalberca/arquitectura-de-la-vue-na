@@ -12,9 +12,16 @@ export class CompleteTodoCmd extends Command<Id> {
   }
 
   internalExecute(id: Id): void {
-    const foundTodo = this.stateManager.state.todos.find(todo => todo.id === id)
-    if (foundTodo !== undefined) {
-      foundTodo.completed = !foundTodo.completed
-    }
+    const todos = this.stateManager.state.todos
+    const updatedTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed
+        }
+      }
+      return todo
+    })
+    this.stateManager.patch({ todos: updatedTodos })
   }
 }

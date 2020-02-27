@@ -8,6 +8,7 @@ import { TYPES } from '../../types'
 @Injectable()
 export class Runner {
   chain = this.executorLink.setNext(this.loggerLink)
+
   constructor(
     @Inject(TYPES.EXECUTOR_LINK) private readonly executorLink: ExecutorLink,
     @Inject(TYPES.LOGGER_LINK) private readonly loggerLink: LoggerLink

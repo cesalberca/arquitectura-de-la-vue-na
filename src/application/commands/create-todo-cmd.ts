@@ -12,8 +12,9 @@ export class CreateTodoCmd extends Command<string> {
   }
 
   internalExecute(text: string): void {
+    const todos = this.stateManager.state.todos
     const currentId =
-      this.stateManager.state.todos
+      todos
         .map(todo => todo.id)
         .slice()
         .sort()
@@ -24,6 +25,6 @@ export class CreateTodoCmd extends Command<string> {
       completed: false,
       text
     }
-    this.stateManager.state.todos.push(newTodo)
+    this.stateManager.patch({ todos: [...todos, newTodo] })
   }
 }
