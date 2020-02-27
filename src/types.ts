@@ -13,5 +13,6 @@ export const TYPES = {
   COMPLETE_TODO_CMD: Symbol.for('COMPLETE_TODO_CMD'),
   RUNNER: Symbol.for('RUNNER'),
   LOGGER_LINK: Symbol.for('LOGGER_LINK'),
-  EXECUTOR_LINK: Symbol.for('EXECUTOR_LINK')
+  EXECUTOR_LINK: Symbol.for('EXECUTOR_LINK'),
+  TODO_REPOSITORY: Symbol.for('TODO_REPOSITORY')
 }

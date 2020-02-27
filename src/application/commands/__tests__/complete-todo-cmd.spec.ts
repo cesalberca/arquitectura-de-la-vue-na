@@ -1,6 +1,7 @@
 import { CompleteTodoCmd } from '../complete-todo-cmd'
 import { capture, instance, mock, when } from 'ts-mockito'
 import { StateManager } from '../../state-manager'
+import { TodoRepository } from '../../../domain/todo/todo-repository'
 
 describe('CompleteTodoCmd', () => {
   it('should mark as completed a todo that was not completed', () => {
@@ -31,8 +32,10 @@ describe('CompleteTodoCmd', () => {
 function setup() {
   const stateManager = mock<StateManager>()
   when(stateManager.state).thenReturn({ todos: [] })
+  const todoRepository = mock<TodoRepository>()
   return {
+    todoRepository,
     stateManager,
-    completeTodoCmd: new CompleteTodoCmd(instance(stateManager))
+    completeTodoCmd: new CompleteTodoCmd(instance(stateManager), instance(todoRepository))
   }
 }

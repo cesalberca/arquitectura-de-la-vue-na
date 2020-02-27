@@ -13,6 +13,8 @@ import { Runner } from './domain/runner/runner'
 import { ExecutorLink } from './domain/runner/executor-link'
 import { LoggerLink } from './domain/runner/logger-link'
 import { ConsoleLogger } from './infrastructure/console-logger'
+import { TodoRepository } from './domain/todo/todo-repository'
+import { TodoLocalRepository } from './infrastructure/todo-local-repository'
 
 export class Container {
   private static _instance: Container | null = null
@@ -56,6 +58,10 @@ export class Container {
     container
       .bind<LoggerLink>(TYPES.LOGGER_LINK)
       .to(LoggerLink)
+      .inSingletonScope()
+    container
+      .bind<TodoRepository>(TYPES.TODO_REPOSITORY)
+      .to(TodoLocalRepository)
       .inSingletonScope()
 
     this._container = container

@@ -4,10 +4,14 @@ import { TYPES } from '../../types'
 import { Inject } from '../../domain/di/inject'
 import { Todo } from '../../domain/todo/todo'
 import { Injectable } from '../../domain/di/injectable'
+import { TodoRepository } from '../../domain/todo/todo-repository'
 
 @Injectable()
 export class CreateTodoCmd extends Command<string> {
-  constructor(@Inject(TYPES.STATE_MANAGER) private readonly stateManager: StateManager) {
+  constructor(
+    @Inject(TYPES.STATE_MANAGER) private readonly stateManager: StateManager,
+    @Inject(TYPES.TODO_REPOSITORY) private readonly todoRepository: TodoRepository
+  ) {
     super()
   }
 
@@ -25,6 +29,7 @@ export class CreateTodoCmd extends Command<string> {
       completed: false,
       text
     }
+    this.todoRepository.create(newTodo)
     this.stateManager.patch({ todos: [...todos, newTodo] })
   }
 }
