@@ -12,13 +12,18 @@ import { CompleteTodoCmd } from './application/commands/complete-todo-cmd'
 import { Runner } from './domain/runner/runner'
 import { ExecutorLink } from './domain/runner/executor-link'
 import { LoggerLink } from './domain/runner/logger-link'
+import { ConsoleLogger } from './infraestructure/console-logger'
 
 export class Container {
   private static _instance: Container | null = null
   private readonly _container: interfaces.Container
 
   private constructor() {
-    container.bind<Logger>(TYPES.LOGGER).toConstantValue(window.console)
+    container
+      .bind<Logger>(TYPES.LOGGER)
+      .to(ConsoleLogger)
+      .inSingletonScope()
+    container.bind<Window>(TYPES.WINDOW).toConstantValue(window)
     container
       .bind<StateManager>(TYPES.STATE_MANAGER)
       .to(VueStateManager)

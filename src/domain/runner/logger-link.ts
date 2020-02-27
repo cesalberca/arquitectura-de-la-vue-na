@@ -12,8 +12,14 @@ export class LoggerLink extends BaseLink {
   }
 
   next(context: Context): void {
-    this.logger.log(context.useCase.constructor.name)
-    this.logger.log(`Parameters: ${context.param !== undefined ? context.param : '-'}`)
+    this.logger.group(context.useCase.constructor.name)
+    this.logger.group('Paremeters')
+    this.logger.log(`${context.param ?? '-'}`)
+    this.logger.groupEnd()
+    this.logger.group('Result')
+    this.logger.object(context.result ?? '-')
+    this.logger.groupEnd()
+    this.logger.groupEnd()
     this.nextLink.next(context)
   }
 }
