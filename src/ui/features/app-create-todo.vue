@@ -26,5 +26,3 @@ export default class AppCreateTodo extends Vue {
   }
 }
 </script>
-
-<style scoped></style>

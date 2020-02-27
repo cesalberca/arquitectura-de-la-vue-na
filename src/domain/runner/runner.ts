@@ -16,7 +16,6 @@ export class Runner {
   run(useCase: UseCase<unknown, unknown>, param: unknown): unknown {
     const context = { useCase, result: undefined, param }
     this.chain.next(context)
-    const result = context.result
-    return result
+    return context.result
   }
 }
