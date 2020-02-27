@@ -7,5 +7,8 @@ export const TYPES = {
   BASE_STATE_MANAGER: Symbol.for('BASE_STATE_MANAGER'),
   APPLICATION: Symbol.for('APPLICATION'),
   VUE: Symbol.for('VUE'),
-  ROUTER: Symbol.for('ROUTER')
+  ROUTER: Symbol.for('ROUTER'),
+  CREATE_TODO_CMD: Symbol.for('CREATE_TODO_CMD'),
+  GET_TODOS_QRY: Symbol.for('GET_TODOS_QRY'),
+  COMPLETE_TODO_CMD: Symbol.for('COMPLETE_TODO_CMD')
 }

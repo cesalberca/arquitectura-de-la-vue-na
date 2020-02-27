@@ -1,13 +1,13 @@
-import { Injectable } from '../domain/injectable'
-import { Command } from '../domain/command'
-import { Logger } from '../domain/logger'
-import { LoggerCommandDecorator } from '../domain/logger-command-decorator'
+import { Injectable } from '../domain/di/injectable'
+import { Logger } from '../domain/use-cases/logger'
+import { LoggerCommandDecorator } from '../domain/use-cases/logger-command-decorator'
+import { UseCase } from '../domain/use-cases/use-case'
 
 @Injectable()
 export class UseCaseDecorator {
   constructor(private readonly logger: Logger) {}
 
-  decorate<T>(commandToBeDecorated: Command<unknown, unknown>): T {
+  decorate<T>(commandToBeDecorated: UseCase<unknown, unknown>): T {
     return (new LoggerCommandDecorator(commandToBeDecorated, this.logger) as unknown) as T
   }
 }

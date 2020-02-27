@@ -1,15 +1,17 @@
-import { Injectable } from './injectable'
-import { Command } from './command'
+import { Injectable } from '../di/injectable'
 import { Logger } from './logger'
+import { UseCase } from './use-case'
 
 @Injectable()
-export class LoggerCommandDecorator implements Command<unknown, unknown> {
+export class LoggerCommandDecorator implements UseCase<unknown, unknown> {
+  readonly = false
+
   constructor(
-    private readonly decoratedCommand: Command<unknown, unknown>,
+    private readonly decoratedCommand: UseCase<unknown, unknown>,
     private readonly logger: Logger
   ) {}
 
-  execute(param: unknown): Promise<unknown> {
+  execute(param: unknown): unknown {
     this.logger.log(
       this.decoratedCommand.constructor.name +
         ' - ' +

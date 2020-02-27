@@ -1,7 +1,7 @@
 import { VueConstructor } from 'vue'
 import { TYPES } from '../types'
-import { Injectable } from '../domain/injectable'
-import { Inject } from '../domain/inject'
+import { Injectable } from '../domain/di/injectable'
+import { Inject } from '../domain/di/inject'
 
 @Injectable()
 export class Application {

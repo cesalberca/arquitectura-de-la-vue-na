@@ -1,7 +1,7 @@
 import { State } from './state'
-import { Injectable } from '../domain/injectable'
+import { Injectable } from '../domain/di/injectable'
 import { StateManager } from './state-manager'
-import { Observer } from '../domain/observer'
+import { Observer } from '../domain/observer/observer'
 
 @Injectable()
 export class BaseStateManager implements StateManager {

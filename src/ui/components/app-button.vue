@@ -8,8 +8,8 @@ import { Component, Vue, Emit } from 'vue-property-decorator'
 @Component({ name: 'AppButton' })
 export default class AppButton extends Vue {
   @Emit()
-  clicked(e: Event) {
-    return e
+  clicked(event: Event) {
+    return event
   }
 }
 </script>
