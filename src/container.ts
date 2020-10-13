@@ -4,11 +4,9 @@ import { TYPES } from './types'
 import { Logger } from './domain/use-cases/logger'
 import { Application } from './ui/application'
 import Vue, { VueConstructor } from 'vue'
-import { StateManager } from './application/state-manager'
-import { VueStateManager } from './infrastructure/vue-state-manager'
-import { CreateTodoCmd } from './application/commands/create-todo-cmd'
-import { GetTodosQry } from './application/queries/get-todos-qry'
-import { CompleteTodoCmd } from './application/commands/complete-todo-cmd'
+import { CreateTodoCmd } from './application/create-todo-cmd'
+import { GetTodosQry } from './application/get-todos-qry'
+import { CompleteTodoCmd } from './application/complete-todo-cmd'
 import { Runner } from './domain/runner/runner'
 import { ExecutorLink } from './domain/runner/executor-link'
 import { LoggerLink } from './domain/runner/logger-link'
@@ -26,10 +24,6 @@ export class Container {
       .to(ConsoleLogger)
       .inSingletonScope()
     container.bind<Window>(TYPES.WINDOW).toConstantValue(window)
-    container
-      .bind<StateManager>(TYPES.STATE_MANAGER)
-      .to(VueStateManager)
-      .inSingletonScope()
     container
       .bind<Application>(TYPES.APPLICATION)
       .to(Application)
